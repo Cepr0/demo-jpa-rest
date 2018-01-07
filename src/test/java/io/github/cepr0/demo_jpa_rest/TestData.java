@@ -12,19 +12,18 @@ import static java.util.Arrays.asList;
 /**
  * @author Cepr0, 2018-01-05
  */
-@Profile("dev")
+@Profile("test")
 @RequiredArgsConstructor
 @Component
-public class DemoData {
+public class TestData {
 
 	@NonNull private final PersonRepo personRepo;
 
 	@EventListener
 	public void appReady(ApplicationReadyEvent event) {
 		personRepo.save(asList(
-				Person.of("Person1", "Address1"),
-				Person.of("Person2", "Address2"),
-				Person.of("Person3", "Address3")
+				Person.of("TestPerson1", "TestAddress1"),
+				Person.of("TestPerson2", "TestAddress2")
 		));
 	}
 }
