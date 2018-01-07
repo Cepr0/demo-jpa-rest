@@ -1,16 +1,12 @@
-package io.github.cepr0.demojpa;
+package io.github.cepr0.demo_jpa_rest;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -30,7 +26,9 @@ public class PersonController {
 
 	@GetMapping("/people/{id}")
 	public ResponseEntity<?> getOne(@PathVariable("id") Integer id) {
-		return ResponseEntity.ok(personRepo.findOne(id));
+		return personRepo.findById(id)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping("/people")

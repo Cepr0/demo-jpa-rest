@@ -1,4 +1,4 @@
-package io.github.cepr0.demojpa;
+package io.github.cepr0.demo_jpa_rest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,5 +12,4 @@ public class ApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

@@ -1,4 +1,4 @@
-package io.github.cepr0.demojpa;
+package io.github.cepr0.demo_jpa_rest;
 
 import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;

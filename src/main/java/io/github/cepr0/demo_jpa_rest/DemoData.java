@@ -1,9 +1,9 @@
-package io.github.cepr0.demojpa;
+package io.github.cepr0.demo_jpa_rest;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationEvent;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +12,7 @@ import static java.util.Arrays.asList;
 /**
  * @author Cepr0, 2018-01-05
  */
+@Profile("!test")
 @RequiredArgsConstructor
 @Component
 public class DemoData {
@@ -22,8 +23,8 @@ public class DemoData {
 	public void appReady(ApplicationReadyEvent event) {
 		personRepo.save(asList(
 				Person.of("Person1", "Address1"),
-				Person.of("Person2", "Adsress2"),
-				Person.of("Person3", "Adsress3")
+				Person.of("Person2", "Address2"),
+				Person.of("Person3", "Address3")
 		));
 	}
 }
