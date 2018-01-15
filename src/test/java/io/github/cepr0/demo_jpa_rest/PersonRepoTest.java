@@ -1,5 +1,7 @@
 package io.github.cepr0.demo_jpa_rest;
 
+import io.github.cepr0.demo_jpa_rest.model.Person;
+import io.github.cepr0.demo_jpa_rest.repo.PersonRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

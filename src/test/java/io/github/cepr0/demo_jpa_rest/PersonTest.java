@@ -1,5 +1,6 @@
 package io.github.cepr0.demo_jpa_rest;
 
+import io.github.cepr0.demo_jpa_rest.model.Person;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

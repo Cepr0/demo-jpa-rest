@@ -1,9 +1,12 @@
-package io.github.cepr0.demo_jpa_rest;
+package io.github.cepr0.demo_jpa_rest.controller;
 
+import io.github.cepr0.demo_jpa_rest.model.Person;
+import io.github.cepr0.demo_jpa_rest.repo.PersonRepo;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -15,13 +18,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 @RequiredArgsConstructor
 @RestController
+@Transactional
 public class PersonController {
 
 	@NonNull private final PersonRepo personRepo;
 
 	@GetMapping("/people")
 	public ResponseEntity<?> getAll() {
-		return ResponseEntity.ok(personRepo.findAll());
+		return ResponseEntity.ok(personRepo.findBy());
 	}
 
 	@GetMapping("/people/{id}")
