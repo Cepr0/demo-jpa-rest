@@ -39,9 +39,9 @@ public interface ParentRepo extends JpaRepository<Parent, Integer> {
 	Page<Parent> findAll(Pageable pageable);
 	
 	@Query(value = "select " +
-			"  pc.id as id, " +
-			"  pc.name as name, " +
-			"  pc.children as children " +
+			"  pc.id as \"id\", " +
+			"  pc.name as \"name\", " +
+			"  pc.children as \"children\" " +
 			"from ( select " +
 			"  p.id as id, " +
 			"  p.name as name, " +
