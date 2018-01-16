@@ -17,7 +17,7 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Profile("dev")
+	@Profile("h2")
 	@Bean(initMethod = "start", destroyMethod = "stop")
 	public Server h2Server() throws SQLException {
 		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");

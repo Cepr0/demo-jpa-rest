@@ -37,19 +37,23 @@ public interface ParentRepo extends JpaRepository<Parent, Integer> {
 			nativeQuery = true)
 	@Override
 	Page<Parent> findAll(Pageable pageable);
-
-	@Query(value = "select * from ( select " +
+	
+	@Query(value = "select " +
+			"  pc.id as id, " +
+			"  pc.name as name, " +
+			"  pc.children as children " +
+			"from ( select " +
 			"  p.id as id, " +
 			"  p.name as name, " +
 			"  cg.child as children, " +
 			"  row_number() over() as rowNum " +
 			"from " +
 			"  parent p " +
-			"  inner join (select c.parent_id, json_agg(json_build_object('id', c.id, 'name', c.name)) as child from child c group by c.parent_id) cg on cg.parent_id = p.id " +
+			"  inner join (select c.parent_id, concat('', json_agg(json_build_object('id', c.id, 'name', c.name))) as child from child c group by c.parent_id) cg on cg.parent_id = p.id " +
 			" ) pc where " +
 			"  pc.rowNum between ?#{#pageable.offset + 1} and ?#{#pageable.offset + #pageable.pageSize}",
 			countQuery = "select count(p.id) from parent p",
-			countProjection = "pc.id",
+//			countProjection = "pc.id",
 			nativeQuery = true)
 	Page<ParentProjection> getWithJson(Pageable pageable);
 }

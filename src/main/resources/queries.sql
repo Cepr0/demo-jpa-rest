@@ -15,7 +15,7 @@ where
 
 select
   c.parent_id,
-  json_agg(json_build_object('id', c.id, 'name', c.name))
+  concat('', json_agg(json_build_object('id', c.id, 'name', c.name)))
 from
   child c
 group by
@@ -23,7 +23,11 @@ group by
 order by
   c.parent_id;
 
-select * from
+select
+  pc.id as id,
+  pc.name as name,
+  pc.children as children
+from
   (select
     p.id as id,
     p.name as name,

@@ -15,10 +15,15 @@ import java.util.Objects;
 @Entity
 public class Parent {
 
-	@Id @GeneratedValue private Integer id;
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
 	private String name;
+	
 	@JsonIgnoreProperties("parent")
-	@OneToMany(mappedBy = "parent") private List<Child> children;
+	@OneToMany(mappedBy = "parent")
+	private List<Child> children;
 
 	public Parent() {
 	}
